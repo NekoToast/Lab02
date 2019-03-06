@@ -26,13 +26,13 @@ public class MarketClass implements Runnable {
     }
 
 
-    public  void deposit(int amount) throws InterruptedException {
+    public synchronized void deposit(int amount) throws InterruptedException {
         storedMoney += amount;
         System.out.println(Thread.currentThread().getName() + " deposited " + amount + ", updated balance: " + storedMoney);
         Thread.currentThread().sleep(500);
     }
 
-    public  void withdraw(int amount) throws InterruptedException {
+    public synchronized void withdraw(int amount) throws InterruptedException {
         if (storedMoney - amount <= 0) {
             System.out.println("Not enough saving to withdraw!");
 
